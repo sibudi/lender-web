@@ -1,0 +1,10 @@
+export const currentUser=state=>state.currentUser
+export const token=state=>state.token
+export const isLogin=state=>state.isLogin
+export const loading=state=>state.loading
+export const showLoading=state=>state.loading
+export const getPurchaseInvestment=state=>state.purchaseInvestment
+export const userName=state=>state.userName
+export const userUuid=state=>state.userUuid
+export const loginToBack=state=>state.loginToBack
+export const headImage=state=>state.headImage

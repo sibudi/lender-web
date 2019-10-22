@@ -1,0 +1,253 @@
+.imagecenter{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+span.red {
+    background: red;
+     border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+  }
+  
+  span.grey {
+    background: #cccccc;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #fff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+  }
+  
+  span.green {
+    background: #5EA226;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+  }
+  
+  span.blue {
+    background: #5178D0;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+  }
+  
+  span.pink {
+    background: #EF0BD8;
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+  }
+  span.tosca {
+    background: rgb(109, 209, 206);
+    border-radius: 0.8em;
+    -moz-border-radius: 0.8em;
+    -webkit-border-radius: 0.8em;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 1.6em;
+    margin-right: 15px;
+    text-align: center;
+    width: 1.6em; 
+  }
+  .top{
+    width: 95%;
+    position: fixed;
+    background-color: #f7f7f7;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-bottom: 1px solid #b2b2b2;
+  }
+  
+  .search{
+    width: 100%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: none;
+    background-color: #e3e3e6;
+  }
+  
+  .search::-moz-focus-inner {
+      border: 0;
+      padding: 0;
+  }
+  
+  .items{
+    background-color: #ffffff;
+    width: 100%;
+    padding-top: 50px;
+  }
+  
+  .app{
+    margin-left: 25px;
+    margin-right: 25px; 
+  }
+  .app_top div{display:inline-block}
+  .app_top div span{display:block}
+
+  .img_logo{
+    padding-right:3rem;
+  }
+  .font-mini{
+    font-size: 60%;
+
+  }
+
+  .shadow-effect{
+
+    box-shadow: 0px 0px 14px rgb(141, 147, 147);
+    border-radius:5px;
+
+  }
+
+  .rounded-bottom{
+    position: relative;
+    height: 300px;
+    background-image: linear-gradient(#ff9d2f, #ff6126);
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+  }
+
+  .section-rounded {
+    border-bottom-left-radius: 50% 20%;
+    border-bottom-right-radius: 50% 20%;
+  }
+
+
+  
+.div-rounded {
+  background:lightgreen;
+  width:100%;
+  height:200px;
+  position:relative;
+  text-align:center;
+  padding:100px 0 0 0;
+  box-sizing:border-box;
+}
+.div-rounded-before {
+  content:'';
+  position:absolute;
+  background:white;
+  width:100%;
+  height:100px;
+  top:0;
+  left:0;
+  border-radius:40%;
+  transform:translatey(-50%);
+}
+
+#rounded {
+ 
+  background-color: rgb(72, 225, 233);
+  border-bottom-right-radius: 40%;
+  border-bottom-left-radius: 40%;
+  height: 200%;
+
+}
+
+
+
+.img-blur{
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+}
+
+.text{
+  color:white;
+  font-size: 200%;
+
+}
+.text-white{
+  color:white;
+}
+.text-black{
+  color:rgb(105, 105, 105);
+}
+
+.img_logo2{
+  display:block;
+  margin:auto;
+}
+
+.padding-style{
+  padding:100px;
+}
+@media (max-width: 767.98px) {
+  .padding-style{
+    padding:50px;
+  }
+}
+.btn-info{
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+}
+
+.padding-card{
+
+  margin-bottom: -30px;
+
+}
+
+.smaller {
+  transform: scale(0.9, 0.9);
+  -ms-transform: scale(0.9, 0.9); /* IE 9 */
+  -webkit-transform: scale(0.9, 0.9); /* Safari and Chrome */
+  -o-transform: scale(0.9, 0.9); /* Opera */
+  -moz-transform: scale(0.9, 0.9); /* Firefox */
+}
+
+
+
+
+.button-fit{
+border-radius:8px;
+background-color: #47BAB5;
+
+}
+
+
+
+

@@ -1,0 +1,36 @@
+.card-custom {
+    overflow: hidden;
+    min-height: 150px;
+    box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+  }
+  
+  .card-custom-img {
+    height: 100px;
+    min-height: 100px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-color: inherit;
+  }
+  
+  /* First border-left-width setting is a fallback */
+  .card-custom-img::after {
+    position: absolute;
+    content: '';
+    top: 121px;
+
+  }
+  
+  .card-custom-avatar img {
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+    position: absolute;
+    top: 9px;
+    margin-left: auto;
+    margin-right: auto;
+    left:0;
+    right:0;
+    width: 80px;
+    height: 80px;
+  }
+  

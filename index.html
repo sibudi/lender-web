@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="bookmark"  type="image/x-icon"  href="./static/favicon.ico"/>
+	<link rel="shortcut icon" href="./static/favicon.png">
+    <title>Do-It Pinjaman Uang Online</title>
+    <noscript>Your browser does not support JavaScript!</noscript>
+  </head>
+
+  <body ref="pageBody">
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+  </body>
+  <script>
+  	// var upLoadbaseUrl="http://stb.www.do-it.co.id/"; //测试环境
+  	var baseUrl = "https://www.do-it.co.id/p2p"
+  	var upLoadbaseUrl="https://www.do-it.id/"; //线上环境
+	 //rem布局
+	!(function (doc, win) {
+	    var docEl = doc.documentElement,
+	        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+	        recalc = function () {
+		        var clientWidth = docEl.clientWidth;
+		        if (!clientWidth) return;
+	            if(clientWidth<1440){
+	            	docEl.style.fontSize = '100px';
+	            	return
+	            }
+		        if (!navigator.userAgent.match(/(iPhone|iPad|iPod|Android|ios|webOS|BlackBerry)/i)) {
+		                docEl.style.fontSize = '100px';
+		        }else{
+		            docEl.style.fontSize = 100 * (clientWidth / 1440) + 'px';
+		        }
+	        };
+	        if (!doc.addEventListener) return;
+	        win.addEventListener(resizeEvt, recalc, false);
+	        doc.addEventListener('DOMContentLoaded', recalc, false);
+	})(document, window);
+	
+	</script>
+</html>

@@ -1,0 +1,152 @@
+/* ------------------- */
+/* TEMPLATE        -- */
+/* ----------------- */
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,900,300);
+
+
+
+/* MAKE IT CUTE ----- */
+.tabs {
+	position: relative;
+	display: flex;
+	min-height: 300px;
+	border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    
+}
+
+.tabby-tab {
+	flex: 1;
+}
+
+.tabby-tab label {
+	display: block;
+	box-sizing: border-box;
+	/* tab content must clear this */
+		height: 40px;
+        font-size: 25px;
+        font-weight:500;
+        color: rgb(95, 94, 94);
+        font-size:18px;
+	padding: 5px;
+	text-align: center;
+	background:rgb(213, 209, 209);
+	cursor: pointer;
+	transition: background 0.5s ease;
+	
+}
+
+.tabby-tab label:hover {
+    background: #4dc1bd;
+    color:whitesmoke;
+}
+
+.tabby-content {
+    position: absolute;
+    max-height: 300px;
+	
+	left: 0; bottom: 0; right: 0;
+	/* clear the tab labels */
+		top: 40px; 
+	
+    padding: 20px;
+	border-radius: 0 0 8px 8px;
+    background: whitesmoke;
+    
+	
+	transition: 
+		opacity 0.8s ease,
+		transform 0.8s ease		;
+	
+	/* show/hide */
+		opacity: 0;
+		transform: scale(0.1);
+		transform-origin: top left;
+	
+}
+
+.tabby-content h3{
+    font-size: 25px;
+	font-weight:500;
+	color: #4dc1bd;
+	text-align:center;
+}
+
+.tabby-content p{
+    font-size: 12px;
+	text-align: justify;
+	padding-right: 20px;
+	color:grey;
+}
+.tabby-content img {
+	float: left;
+	margin-right: 20px;
+	border-radius: 8px;
+}
+
+
+/* MAKE IT WORK ----- */
+
+.tabby-tab [type=radio] { display: none; }
+[type=radio]:checked ~ label {
+	background:
+	#4dc1bd;
+	z-index: 2;
+	color:whitesmoke;
+}
+
+[type=radio]:checked ~ label ~ .tabby-content {
+	z-index: 1;
+	
+	/* show/hide */
+		opacity: 1;
+		transform: scale(1);
+}
+
+/* BREAKPOINTS ----- */
+@media screen and (max-width: 767px) {
+	.tabs { min-height: 400px;}
+}
+
+@media screen and (max-width: 480px) {
+	.tabs { min-height: 580px; }
+	.tabby-tab label { 
+		height: 60px;
+	}
+	.tabby-content { top: 60px; }
+	.tabby-content img {
+		float: none;
+		margin-right: 0;
+		margin-bottom: 20px;
+	}
+}
+
+.tabby-content button {
+	margin: 0 auto;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    display: block;
+	border-radius:5px;
+	margin-top:30px;
+
+  
+      
+  }
+  
+  /* Change background color of buttons on hover */
+  .tabby-content button:hover {
+    background-color:
+	#4dc1bd;
+      color: white;
+  }
+  
+  /* Create an active/current tablink class */
+  .tabby-content button.active {
+    background-color: #4dc1bd;
+    color: white;
+   
+  }
