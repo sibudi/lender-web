@@ -2,9 +2,9 @@
   <div class="indextop">
     <div class="navBar">
         <div class="topBar df aic">
-          <div class="logo_icon f1"><img src="../assets/images/Doitnavbar.png" width="42px" alt="" ></div>
+          <div style="margin-left: 0px;" class="logo_icon f1"><img src="../assets/images/Doitnavbar.png" width="42px" alt="" ></div>
           <div class="navBarContent">
-        
+
             <ul class='df'>
               <li><a href="">Beranda</a></li>
               <li v-for="item in urlLists">
@@ -34,9 +34,9 @@
             </div>
             <!-- <div class="login_btn" v-show="!currentUser" @click="login()">Masuk</div> -->
             <div class="df aic"  v-show="currentUser">
-              <img src="../assets/images/touxiang.png" height="30" width="30" alt="" style="border-radius:50%;">
+              <img :src="avatar" height="30" width="30" alt="" style="border-radius:50%;">
               <el-dropdown>
-                <span class="el-dropdown-link">{{userName?userName:currentUser}}<!-- <i class="el-icon-arrow-down el-icon--right"></i> --></span>
+                <span style="color: rgba(22,66,118,1);" class="el-dropdown-link">{{userName?userName:currentUser}}<!-- <i class="el-icon-arrow-down el-icon--right"></i> --></span>
                 <el-dropdown-menu slot="dropdown" class="nav_left_drop">
                   <el-dropdown-item><a  @click="pushto(1)">Pusat pribadi</a></el-dropdown-item>
                   <el-dropdown-item><a @click="pushto(2)">Keluar</a></el-dropdown-item>
@@ -57,6 +57,7 @@
     name: 'indexTop',
     data () {
       return {
+        avatar:process.env.SHOW_IMAGE+'?path=/mnt/MyUpload/img/w/k/g/98328763f4fe45f7b7b8ae9f48dfddab.JPG&sessionId=c7e8ff5978654af1a662d2809e76ef4f',
         showRateTips: false,
         msg: 'Welcome to Your Vue.js App',
         rateY: '75.00%',
@@ -95,6 +96,7 @@
           }
           _this.thisClass=urls;
         }, 500);
+          this.avatar = _this.$store.getters.headImage=='' ? "../assets/images/touxiang.png" : _this.$store.getters.headImage;
           this.$axios.post('/api-order/order/getRepayRate', {})
           .then((response)=>{
             if(response.data.code==0){
@@ -116,6 +118,7 @@
           _this.$store.dispatch("setToken",'');
           _this.$store.dispatch("setUser",false);
           _this.$store.dispatch("setLogin",false);
+          _this.$store.dispatch("setHeadImage",'');
           _this.$message({
             message: 'Logout success',
             type: 'success'
@@ -128,7 +131,7 @@
         if(e == 'Scattered' && !this.$store.getters.isLogin){
           this.$store.dispatch("loginToBack","/"+e);
         }
-        
+
         this.$router.push("/"+e)
       }
     },
@@ -145,19 +148,20 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
   /*顶部栏*/
   .indextop {
-    /*position: relative;*/
+    position: fixed;
     width: 100%;
-    min-width: 1200px;
+    top: 0;
+    /* min-width: 1200px; */
     z-index: 9999;
     background-color: rgb(255, 255, 255);
     height: 80px;
     box-shadow:0px 1px 30px rgba(8,35,63,0.5);
   }
   .navBar {
-      width: 1200px;
+      width: 100%;
       height: 80px;
       box-sizing: border-box;
-      min-width: 1200px;
+      /* min-width: 1200px; */
       margin: 0 auto;
       padding-right: 30px;
   }
@@ -208,7 +212,7 @@
     font-weight:500;
     letter-spacing:1px;
 
-    
+
   }
   .navBarContent ul li span {
       display: block;
@@ -302,7 +306,7 @@
     left: -83px;
     line-height: 15px;
     text-align: left;
-    padding: 18px 12px 26px; 
+    padding: 18px 12px 26px;
     z-index: 20;
     border-radius:5px;
   }

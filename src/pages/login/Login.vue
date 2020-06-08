@@ -19,7 +19,7 @@
 		<!-- 登录框 -->
 			<div>
 					<div class="login_title"><img src="../../assets/images/login_tit.png" height="36" width="425"></div>
-					<div class="login_box">	
+					<div class="login_box">
 							<div class="login_logo"><img src="../../assets/images/login_logo.png" height="60" width="60"></div>
 							<div class="login_item df">
 									<div class='login_hd mobile_hd'>+62</div>
@@ -49,7 +49,7 @@
 					  	<div class="df login_tips aic" style="width: 410px;">
 					  		<div><img src="../../assets/images/login_tips.png" height="12" width="12"></div>
 					  		<!-- <div>我已阅读并同意<a href=""><注册协议></a></div> -->
-					  		<div style="text-align:left;">Saya telah membaca dan menyetujui <router-link to="/guaranteeProtacol">Perjanjian Pendaftaran</router-link>.</div>
+					  		<div style="text-align:left;">Saya telah membaca dan menyetujui <router-link to="/guaranteeProtacol">Perjanjian Pinjaman</router-link>.</div>
 					  	</div>
 					    <div class="">
 					    	<button id='signinBtn' @click="loginSubmite()"  :disabled="loading" :loading="loading">Ajukan</button>
@@ -163,13 +163,14 @@
 								  	loading.close();
 								  	if(re.data.code==0){
 								  		_this.showWaitTips();
+      					  		_this.$message({showClose: true,message: 'sms terkirim',type: 'success'});
 								  	}else {
 								  		_this.sendtrue = false;
 								  		_this.$message(re.data.message);
 								  		_this.getImgCode();
 								  	}
 								  }).catch(function (re) {});
-							}else {	
+							}else {
 								this.$message("Harap isi nomor ponsel dan kode verifikasi grafis");
 							}
 						}else {
@@ -178,6 +179,8 @@
         },
 			loginSubmite(){
 				let mb=this.$globals.dataUtil.isMobile(this.phoneNum);
+				
+				console.log(mb)
 				if(mb&&this.$globals.dataUtil.isImgNumber(this.imgCode)&&this.smsCode){
 					this.loading = true;
 					this.$axios.post('/api-user/user/login', {
@@ -208,17 +211,16 @@
 					  		},1000);
 					  	}else {
 					  		this.$message(re.data.message);
-					  		this.loading = false 
+					  		this.loading = false
 					  	}
 					  })
 					  .catch((re)=>{
 					    // console.log(re);
-					    this.loading = false 
+					    this.loading = false
 					  });
-					
+
 				}else {
 					this.$message("Harap isi nomor ponsel dan kode verifikasi grafis");
-
 				}
 			},
 		},

@@ -34,8 +34,8 @@
                 <p>Rp {{$globals.dataUtil.parseNumber(item.amount)}}</p>
               </li>
               <li>
-                <p class="table_item_tit">Batas Waktu Pinjaman</p>
-                <p>{{item.borrowingTerm.charAt(2)=='d'?item.borrowingTerm.substr(0,2)+'hari':'3bulan'}}</p>
+                <p class="table_item_tit">Tenor</p>
+                <p>{{getLabelledTerm(item.borrowingTerm)}}</p>
               </li>
               <li style="width: 230px;">
                 <p class="table_item_tit">Status Pinjaman</p>
@@ -81,7 +81,7 @@ export default{
       this.mobileBumber = this.$route.query['mos'];
       this.name = this.$route.query['name'];
     }
-    
+
     // this.headImage = this.$store.getters.headImage;
     this.bindData();
   },
@@ -92,6 +92,17 @@ export default{
       this.pageSize = val;
       this.currentPage = 1;
       this.bindData()
+    },
+    getLabelledTerm(e){
+      if(e.endsWith('d')){
+        return e.substring(0, e.length - 1) + " Hari";
+      }else if(e.endsWith('w')){
+        return e.substring(0, e.length - 1) + " Minggu";
+      }else if(e.endsWith('m')){
+        return e.substring(0, e.length - 1) + " Bulan";
+      }
+      else
+      return e;
     },
     handleCurrentChange(val) {
       this.currentPage = val;
@@ -117,11 +128,20 @@ export default{
       _this.$axios.post('/api-order/scatterStandard/selectLoanHistory', _data).then(function (re) {
         if(re.data.code==0){
           _this.tableData = re.data.data;
+          _this.tableData.forEach(v=>{
+            if(v.borrowingTerm.endsWith('d')){
+              v.borrowingTerm = v.borrowingTerm.substring(0, v.borrowingTerm.length - 1) + " Hari";
+            }else if(v.term.endsWith('w')){
+              v.borrowingTerm = v.borrowingTerm.substring(0, v.borrowingTerm.length - 1) + " Minggu";
+            }else if(v.term.endsWith('m')){
+              v.borrowingTerm = v.borrowingTerm.substring(0, v.borrowingTerm.length - 1) + " Bulan";
+            }
+            })
           _this.totalCount = re.data.data.length;
         }else {
           _this.$message(re.data.message);
         }
-      }).catch(function (re) {}); 
+      }).catch(function (re) {});
     }
   }
 }

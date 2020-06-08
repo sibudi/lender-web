@@ -88,8 +88,8 @@
 		    return {
 		        statuslist: [
 			        {code:'1',name:'Pembayaran Tertunda'},
-			        {code:'2',name:'Investasi Gagal'},
-			        {code:'3',name:'Investasi Berhasil'},
+			        {code:'2',name:'Pendanaan Gagal'},
+			        {code:'3',name:'Pendanaan Berhasil'},
 			        {code:'4',name:'Pencocokan berhasil'},
 			        {code:'5',name:'Proses Pengembalian'},
 			        {code:'6',name:'Proses Pembayaran'},

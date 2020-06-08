@@ -24,7 +24,7 @@
         <router-link tag="li"  to="/center/setting" @mouseenter.native="handleenter" @mouseleave.native="handleleave">Data pribadi</router-link>
         <router-link tag="li"  to="/center/assets" >Aset saya</router-link>
         <router-link tag="li"  to="/center/records" >Riwayat Pembelian</router-link>
-        <router-link tag="li"  to="/message" >Pemberitahuan</router-link>
+        <!-- <router-link tag="li"  to="/message" >Pemberitahuan</router-link> -->
       </ul>
     </nav>
     <div class="center_content f1">
@@ -35,7 +35,7 @@
 
       </transition>
     </div>
-  </div>  
+  </div>
 </section>
 </template>
 <script>
@@ -119,7 +119,6 @@ export default {
     background:rgba(239,243,245,1);
     border:1px solid rgba(212,219,225,1);
     font-size:18px;
-    font-family:PingFangSC-Medium;
     font-weight:500;
     color:rgba(22,66,118,1);
     text-align: left;
@@ -127,5 +126,3 @@ export default {
   }
 
 </style>
-
-

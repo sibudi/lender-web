@@ -97,6 +97,10 @@
 .ele_table{
 
 }
+.el-table .cell {
+    word-break: break-word;
+}
+
 .ele_table .el-table th{
   height:46px;
   background:rgba(247,249,250,1);

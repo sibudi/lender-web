@@ -1,1 +1,0 @@
-# oss cp . oss://do-it-homepage -r -f --profile default2

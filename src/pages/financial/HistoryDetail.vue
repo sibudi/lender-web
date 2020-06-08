@@ -11,7 +11,7 @@
     <div class="order_history">
       <div class="bread_bar">
         <el-breadcrumb separator="/">
-          <el-breadcrumb-item :to="{ path: '/Scattered' }">Investasi</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: '/Scattered' }">Pendanaan</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/ScatteredDetail' ,query:{uid:uuid}}">Detail klaim</el-breadcrumb-item>
           <el-breadcrumb-item>Catatan Riwayat Pinjaman</el-breadcrumb-item>
         </el-breadcrumb>
@@ -39,7 +39,7 @@
               </li>
               <li>
                 <p class="table_item_tit">Batas Waktu Pinjaman</p>
-                <p>{{item.borrowingTerm.charAt(2)=='d'?item.borrowingTerm.substr(0,2)+'hari':'3bulan'}}</p>
+                <p>{{item.borrowingTerm}}</p>
               </li>
               <li style="width: 230px;">
                 <p class="table_item_tit">Status Pinjaman</p>
@@ -86,7 +86,7 @@ export default{
       this.mobileBumber = this.$route.query['mos'];
       this.name = this.$route.query['name'];
     }
-    
+
     // this.headImage = this.$store.getters.headImage;
     this.bindData();
   },
@@ -123,14 +123,18 @@ export default{
         if(re.data.code==0){
           _this.tableData = re.data.data;
           _this.totalCount = re.data.data.length;
-          // _this.tableData.forEach(v=>{
-          //   console.log(v)
-          //   v.yearRateFin = parseFloat(v.yearRateFin*100);
-          // })
+          _this.tableData.forEach(v=>{
+            if(v.borrowingTerm.endsWith('d')){
+              v.borrowingTerm = v.borrowingTerm.substring(0, v.borrowingTerm.length - 1) + " Hari";
+            }else if(v.term.endsWith('w')){
+              v.borrowingTerm = v.borrowingTerm.substring(0, v.borrowingTerm.length - 1) + " Minggu";
+            }else if(v.term.endsWith('m')){
+              v.borrowingTerm = v.borrowingTerm.substring(0, v.borrowingTerm.length - 1) + " Bulan";
+            }})
         }else {
           _this.$message(re.data.message);
         }
-      }).catch(function (re) {}); 
+      }).catch(function (re) {});
     }
   }
 }
@@ -138,7 +142,7 @@ export default{
 <style scoped>
 .order_history{
   width: 1200px;
-  margin: 0px auto 53px;
+  margin: 100px auto 53px;
   text-align: left;
 }
 

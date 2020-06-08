@@ -7,7 +7,7 @@
     },
     "en":{
       "account": "Ikhtisar akun",
-      "invest": "Catatan investasi",
+      "invest": "Catatan pendanaan",
       "persional": " Informasi pribadi"
     }
   }

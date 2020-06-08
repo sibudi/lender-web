@@ -107,7 +107,15 @@ export default{
     }, 1000);
   },
     goback(){
-      this.$router.go(-1);
+      let _this = this;
+      let _data = {orderNo: _this.uuid}
+      _this.$axios.post('/api-order/order/failOrder/' + _this.uuid, _data).then(function (re) {
+        if(re.data.code==0){
+          _this.$router.go(-1);
+        }else {
+          _this.$message(re.data.message);
+        }
+      }).catch(function (re) {});
     },
     goDetail(){
       this.$router.push('/center/records');
@@ -143,7 +151,7 @@ export default{
         }else {
           _this.$message(re.data.message);
         }
-      }).catch(function (re) {}); 
+      }).catch(function (re) {});
     },
     handleChange(e){
       let _this = this;
@@ -185,8 +193,8 @@ export default{
       _this.$axios.post('/api-order/order/checkPayPWD', _data).then(function (re) {
         loading.close();
         if(re.data.code==0){
-          _this.$message({type:'success',message:'Beli kesuksesan,Dana akan segera dilepaskan ke akun peminjam atas nama Anda.'});
-          setTimeout(()=>{_this.$router.go(-1);}, 1000);
+          _this.$message({type:'success',message:'Anda berhasil melakukan pendanaan'});
+          setTimeout(()=>{_this.$router.push("./Scattered");}, 1000);
         }else {
           _this.$message(re.data.message);
         }

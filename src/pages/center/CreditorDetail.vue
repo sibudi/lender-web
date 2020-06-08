@@ -19,9 +19,9 @@
       <!--列表-->
       <div class="order_box df jcsb">
         <div class="detail_box">
-          <div class="detail_box_tit">Jumlah investasi</div>
+          <div class="detail_box_tit">Jumlah pendanaan</div>
           <div class="detail_box_con">
-            <p>Jumlah investasi</p>
+            <p>Jumlah pendanaan</p>
             <p class="" style="font-size: 18px;color:#164276;margin-top:19px;">Rp {{$globals.dataUtil.parseNumber(amountBuy)}}</p>
           </div>
           <div class="detail_box_tit">Detail klaim</div>
@@ -32,9 +32,9 @@
           <div class="detail_box_tit">Informasi pinjaman</div>
           <div class="detail_box_con">
             <p class="detail_box_p">Tujuan Pinjaman<span>{{borrowingPurposes}}</span></p>
-            <p class="detail_box_p">Batas Waktu Pinjaman<span>{{term.charAt(2)=='d'?term.substr(0,2)+'hari':'3bulan'}}</span></p>
+            <p class="detail_box_p">Batas Waktu Pinjaman<span>{{term}}</span></p>
             <p class="detail_box_p">Jumlah pinjaman<span>Rp {{$globals.dataUtil.parseNumber(amountApply)}}</span></p>
-            <p class="detail_box_p">Tanggal pembayaran yang diharapkan<span>{{refundIngTime}}</span></p>
+            <p class="detail_box_p">Tanggal pembayaran yang diharapkan<span style="white-space: pre;">{{refundIngTime}}</span></p>
             <p class="detail_box_p">Tingkat pengembalian tahunan yang diharapkan<span style="margin-bottom: 0;">{{yearRateFin}}%</span></p>
           </div>
         </div>
@@ -46,9 +46,12 @@
             <p class="detail_box_p">Nomor ID<span>{{idCardNo}}</span></p>
             <p class="detail_box_p">Tanggal lahir<span>{{birthday}}</span></p>
             <p class="detail_box_p">Jenis kelamin<span>{{sex}}</span></p>
-            <p class="detail_box_p">Alamat Tempat Tinggal<span>{{address}}</span></p>
+            <p class="detail_box_p">Alamat<span>{{address}}</span></p>
             <p class="detail_box_p">Pembagian Kredit<span>{{score}}</span></p>
             <p class="detail_box_p">Riwayat Frekuensi Pinjaman<span>{{loanCount}}</span><span class="check_detail_operate" @click="goHistory(uuid)">Lihat Detail</span></p>
+            <p class="detail_box_p">Asuransi(11%) : <span>Rp {{$globals.dataUtil.parseNumber(insurance)}}</span></p>
+            <p class="detail_box_p">Total : <span>Rp {{$globals.dataUtil.parseNumber(insurance+amountApply)}}</span></p>
+
           </div>
         </div>
       </div>
@@ -76,6 +79,7 @@ export default{
       birthday:'',
       sex:'',
       address:'',
+      insurance:0,
       score:'',
       loanCount: '',
       debts:{},
@@ -113,14 +117,31 @@ export default{
       _this.$axios.post('/api-order/scatterStandard/selectScatterstandardById', {creditorNo:_this.uuid}).then(function (re) {
         if(re.data.code==0){
               let _data = re.data.data;
-              let _time = _data.refundIngTime.split('-')
+              if(_data.creditorType!=2){
+                let _time = _data.refundIngTime.split('-')
+                _this.refundIngTime = _time[2]+'-'+_time[1]+'-'+_time[0];
+              }
+              else{
+                let output = "";
+                _data.refundPlanList.forEach(function(entry) {
+                    // console.log(entry);
+                    let date = new Date(entry.refundIngTime);
+                    output += "\n • " + (date.getDate() + 1 < 10 ? '0' + (date.getDate() + 1) : date.getDate() + 1) + '-'
+                    + (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-' + date.getFullYear() + ' (Rp ' + _this.$globals.dataUtil.parseNumber(entry.refundIngAmount) + ')';
+                });
+                _this.refundIngTime = output;
+              }
+              // let _time = _data.refundIngTime.split('-')
               _this.percentage = parseFloat(((parseFloat(_data.amountBuy)/parseFloat(_data.amountApply))*100).toFixed(2));
               _this.borrowingPurposes = _data.borrowingPurposes;
-              _this.term = _data.term;
+              // _this.term = _data.term;
               _this.amountApply = _data.amountApply;
-              _this.refundIngTime = _time[2]+'-'+_time[1]+'-'+_time[0];
+              // _this.refundIngTime = _time[2]+'-'+_time[1]+'-'+_time[0];
               _this.yearRateFin = parseFloat(_data.yearRateFin*100).toFixed(2);
               _this.mobileNumber = _data.mobileNumber;
+              console.log(_data.realName);
+              console.log(_data.mobileNumber);
+              console.log(_data.yearRateFin);
               _this.realName = _data.realName;
               _this.idCardNo = _data.idCardNo;
               _this.amountBuy = _data.amountBuy;
@@ -131,6 +152,16 @@ export default{
               _this.score = _data.score;
               _this.status = _data.status;
               _this.maxCount = (parseFloat(_data.amountApply)-parseFloat(_data.amountBuy))/10000;
+              if(_data.insurance!=0){
+                _this.insurance = _data.insurance;
+              }
+              if(_data.term.endsWith('d')){
+                _this.term = _data.term.substring(0, _data.term.length - 1) + " Hari";
+              }else if(_data.term.endsWith('w')){
+                _this.term = _data.term.substring(0, _data.term.length - 1) + " Minggu";
+              }else if(_data.term.endsWith('m')){
+                _this.term = _data.term.substring(0, _data.term.length - 1) + " Bulan";
+              }
               if(_data.isBuy == 0){
                 _this.mobileNumberHid = _data.mobileNumber.substr(0,3)+"****"+_data.mobileNumber.substr(7);
               }else{
@@ -139,7 +170,7 @@ export default{
         }else {
           _this.$message(re.data.message);
         }
-      }).catch(function (re) {}); 
+      }).catch(function (re) {});
     }
   }
 }

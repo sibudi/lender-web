@@ -283,7 +283,7 @@
 					<el-form-item :label= '$t("idCardUrl")' prop="idCardUrl" >
 				      	<div class="uploadImg">
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  list-type="picture-card"
 							  :limit='1'
 							  :data="upLoadData"
@@ -303,7 +303,7 @@
 					<el-form-item :label= '$t("familyCardUrl")' prop="familyCardUrl" >
 				      	<div class="uploadImg">
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  list-type="picture-card"
 							  :limit='1'
 							  :data="upLoadData"
@@ -323,7 +323,7 @@
 					<el-form-item :label= '$t("studentCardUrl")' prop="studentCardUrl" >
 				      	<div class="uploadImg">
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  list-type="picture-card"
 							  :limit='1'
 							  :data="upLoadData"
@@ -343,7 +343,7 @@
 					<el-form-item :label= '$t("idCardInHandUrl")' prop="idCardInHandUrl" >
 				      	<div class="uploadImg">
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  list-type="picture-card"
 							  :limit='1'
 							  :data="upLoadData"
@@ -364,7 +364,7 @@
 				      	<div class="uploadImg">
 				      		
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  list-type="picture-card"
 							  :limit='1'
 							  :data="upLoadData"
@@ -466,7 +466,7 @@
 
 			return{
 				canPass: true,
-				BASE_URL:'',
+				UPLOAD_IMAGE:'',
 				uploadImgs: [{name:'diyige',url:'http:www.baidu.com'}],
 				uploadName: '',
 				uploadName1: '',
@@ -596,7 +596,7 @@
 		},
 		methods:{
 			init(){
-				this.BASE_URL=baseUrl+"api-upload/upload/image";
+				this.UPLOAD_IMAGE=process.env.UPLOAD_IMAGE;
 				this.getaddress1(0);
 				this.getaddress2(0);
 				this.upLoadData['sessionId']=this.$store.getters.token;
