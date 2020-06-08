@@ -58,7 +58,7 @@
 							    <source src="../assets/video/movie2.mp4" type="video/ogg">
 							</video>
 						</div>
-						<div class="intro_text"id="">
+						<div class="intro_text" id="">
 							<p>Panduan Meminjam Uang</p>
 							<div>Ada kebutuhan mendesak tapi bingung mencari dananya?</div>
 							<div>Khawatir atau malu jika harus meminjam uang ke teman atau saudara?</div>
@@ -117,19 +117,19 @@
 	      </div>
     </div>
 
-    <div class="home_alert_bg" v-if="currentBalance>0&&login">
+    <!-- <div class="home_alert_bg" v-if="currentBalance>0&&login">
     	<div  class="home_alert_box">
     		<div><i class="el-icon-error colC9 close_btn" @click="goback"></i></div>
     		<div class="home_alter_tit">Jumlah yang tersedia</div>
-    		<div class="hoem_alter_amount">Rp {{currentBalance}}</div>
+    		<div class="hoem_alter_amount">Rp {{$globals.dataUtil.parseNumber(currentBalance)}}</div>
     		<div class="home_alert_check" @click="goAssets">Lihat Detail</div>
     		<div class="df home_alert_btn jcsb">
     			<p @click="goBank">Tidak, transfer ke kartu bank.</p>
-    			<p @click="goScattered">Investasikan segera</p>
+    			<p @click="goScattered">Pendanaan segera</p>
     		</div>
     	</div>
 	    
-	  </div>
+	  </div> -->
 
 </div>
 </template>
@@ -202,7 +202,7 @@
 		    this.init();
         const s = document.createElement('script');
 		    s.type = 'text/javascript';
-		    s.src = 'https://afpi.or.id/secure/certificates/member.min.js?key=0676dc6e740ded85b58aac6c4f59836a';
+		    s.src = process.env.AFPI_URL;
 		    document.body.appendChild(s);
 
 		},
@@ -210,7 +210,7 @@
 			localStorage.removeItem('login');
 			const otherJs = document.getElementsByTagName('script');
 	    for(let i=0;i<otherJs.length;i++){
-	    	if(otherJs[i].src == "https://afpi.or.id/secure/certificates/member.min.js?key=0676dc6e740ded85b58aac6c4f59836a"){
+	    	if(otherJs[i].src == process.env.AFPI_URL){
 	    		document.body.removeChild(otherJs[i])
 	    	}
 	    }
@@ -229,6 +229,7 @@
 	}
 	.bannerImgs{
 		height: 698px;
+		/* margin-top:-20px; */
 	}
 	.introduce_box{
 		width: 100%;

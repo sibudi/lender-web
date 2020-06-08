@@ -23,17 +23,17 @@
         <p class="bot_more_tit">Tentang kami</p>
         <p><router-link to="/aboutUs">Tentang kami</router-link></p>
         <p><router-link to="/joinus">Karir</router-link></p>
-        <p><router-link to="/faq">Blog</router-link></p>
+        <p><router-link to="/blogList">Blog</router-link></p>
       </div>
       <div class="bot_more_item" style="width:10px">
         <p class="bot_more_tit">Legal</p>
-        <p><router-link to="/blogList">Pengaduan Layanan</router-link></p>
+        <p><router-link to="/faq">Pengaduan Layanan</router-link></p>
       </div>
       <div class="bot_more_item" style="padding-left:50vh" >
         <p class="bot_more_tit">Layanan Pengaduan Do-It</p>
         <p class="noHover"><router-link to="">Senin - Minggu : 09.00 - 17.00 WIB</router-link></p>
-        <p><a href="tel:(021)40530000">(021) 4053 0000</a></p>
-        <p><a href="mailto:cs@Do-it.id"> >cs@Do-it.id</a></p>
+        <p><a href="tel:(021)50858846">(021) 5085 8846</a></p>
+        <p><a href="mailto:cs@Do-it.id"> cs@Do-it.id</a></p>
         <p><a href="https://www.do-it.id">www.do-it.id</a></p>
       </div>
     </div>
@@ -73,7 +73,7 @@
           <div class="bot_proldoc_item f1" style="font-family:raleway;text-align:justify">
         9.  Setiap transaksi dan kegiatan pinjam meminjam atau pelaksanaan kesepakatan mengenai pinjam meminjam antara atau yang melibatkan Penyelenggara, Pemberi Pinjaman, dan/atau Penerima Pinjaman wajib dilakukan melalui escrow account dan virtual account sebagaimana yang diwajibkan berdasarkan Peraturan Otoritas Jasa Keuangan Nomor 77/POJK.01/2016 tentang Layanan Pinjam Meminjam Uang Berbasis Teknologi Informasi dan pelanggaran atau ketidakpatuhan terhadap ketentuan tersebut merupakan bukti telah terjadinya pelanggaran hukum oleh Penyelenggara sehingga Penyelenggara wajib menanggung ganti rugi yang diderita oleh masing-masing Pengguna sebagai akibat langsung dari pelanggaran hukum tersebut di atas tanpa mengurangi hak Pengguna yang menderita kerugian menurut Kitab Undang-Undang Hukum Perdata.<br>
         PT Glotech Prima Vista merupakan badan hukum yang didirikan berdasarkan Hukum Republik Indonesia. Berdiri sebagai perusahaan yang telah diatur oleh dan dalam pengawasan Otoritas Jasa Keuangan (OJK) di Indonesia, Perusahaan menyediakan layanan interfacing  sebagai penghubung pihak yang memberikan pinjaman dan pihak yang membutuhkan pinjaman meliputi pendanaan dari individu, organisasi, maupun badan hukum kepada individu atau badan hukum tertentu. Perusahaan tidak menyediakan segala bentuk saran atau rekomendasi pendanaan terkait pilihan-pilihan dalam situs ini.<br>
-        Isi dan materi yang tersedia pada situs Do-It dimaksudkan untuk memberikan informasi dan tidak dianggap sebagai sebuah penawaran, permohonan, undangan, saran, maupun rekomendasi untuk menginvestasikan sekuritas, produk pasar modal, atau jasa keuangan lainya. Perusahaan dalam memberikan jasanya hanya terbatas pada fungsi administratif.<br>
+        Isi dan materi yang tersedia pada situs Do-It dimaksudkan untuk memberikan informasi dan tidak dianggap sebagai sebuah penawaran, permohonan, undangan, saran, maupun rekomendasi untuk pendanaan sekuritas, produk pasar modal, atau jasa keuangan lainya. Perusahaan dalam memberikan jasanya hanya terbatas pada fungsi administratif.<br>
         Pendanaan dan pinjaman yang ditempatkan di rekening Do-It adalah tidak dan tidak akan dianggap sebagai simpanan yang diselenggarakan oleh Perusahaan seperti diatur dalam Peraturan Perundang-Undangan tentang Perbankan di Indonesia. Perusahaan atau setiap Direktur, Pegawai, Karyawan, Wakil, Afiliasi, atau Agen-Agennya tidak memiliki tanggung jawab terkait dengan setiap gangguan atau masalah yang terjadi atau yang dianggap terjadi yang disebabkan oleh minimnya persiapan atau publikasi dari materi yang tercantum pada situs Perusahaan.
           </div>
         </div>

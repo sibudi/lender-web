@@ -25,7 +25,7 @@
         <div class='upload_header_box'>
           <p>Foto Profil</p>
           <img :src="avatar" height="110" width="110" alt="">
-          <el-upload :action="BASE_URL" :data="upLoadData" :on-success='handleAvatarSuccess' :show-file-list="false">
+          <el-upload :action="UPLOAD_IMAGE" :data="upLoadData" :on-success='handleAvatarSuccess' :show-file-list="false">
             <el-button size="small" type="primary"><i class="el-icon-upload"></i> Perbaharui Foto Profil</el-button>
           </el-upload>
         </div>
@@ -58,6 +58,29 @@
             </div>
           </div>
       </div>
+      <div class="center_tit">Akun Deactivate </div>
+      <div class="deactivate">
+      <div v-if="authStatus ==2">
+         <el-button size="small" type="danger" @click="deActivate">Deactivate</el-button>
+      </div>
+       <el-dialog
+      title="Deactivate Account"
+      :visible.sync="deactivateDialogVisible"
+      v-model="deactivateDialogVisible"
+      :close-on-click-modal="false"
+      size="small"
+    >
+  Apakah anda akan menonaktifkan akun anda?
+    <div slot="footer" class="dialog-footer">
+      <el-button @click="deactivateDialogVisible= false; ">Batal</el-button>
+        <el-button
+          type="danger"
+          @click="deActivateDialogSubmit"
+          :loading="deactivateDialogLoading"
+        >Deactivate</el-button>
+    </div>
+    </el-dialog>
+      </div>
 </div>
 
 </template>
@@ -66,7 +89,7 @@ import '../../assets/css/element.css';
 export default{
   data(){
     return {
-      BASE_URL:'',
+      UPLOAD_IMAGE:'',
       avatar:'',
       upLoadData:{"fileType": "img","sessionId": ""},
       payPwd:"",
@@ -76,26 +99,29 @@ export default{
       bankName:'',
       bankCardNo:'',
       bankCode:'',
+      authStatus:0,
       canEditCard: true,
       BasicInfoForm:{
         pass:'',
         checkPass:'',
         age:""
       },
-      fileList:[]
+      fileList:[],
+      deactivateDialogVisible:false,
+      deactivateDialogLoading:false
     }
   },
   async mounted(){
-    this.BASE_URL = upLoadbaseUrl+"api-upload/upload/image";
+    this.UPLOAD_IMAGE = process.env.UPLOAD_IMAGE;
     this.upLoadData['sessionId']=this.$store.getters.token;
   },
   created(){
-    this.init();
+    this.bindInit();
   },
   destroyed(){
   },
   methods: {
-    init(){
+    bindInit(){
         let _this = this;
        _this.$axios.post('/api-user/user/userBasicInfo', {'userId':_this.$store.getters.userUuid}).then(function (re) {
         if(re.data.code==0){
@@ -106,8 +132,18 @@ export default{
           _this.bankCardNo = re.data.data.bankCardNo;
           _this.bankCode = re.data.data.bankCode;
           _this.payPwd = re.data.data.payPwd;
-          _this.avatar = baseUrl+''+re.data.data.headImage;
+          _this.authStatus = re.data.data.authStatus;
+          _this.avatar = process.env.SHOW_IMAGE+'?path='+re.data.data.headImage + '&sessionId='+_this.$store.getters.token;
         }else {
+          _this.mobileNumber  =""
+          _this.realName      =""
+          _this.idCardNo      =""
+          _this.bankName      =""
+          _this.bankCardNo    =""
+          _this.bankCode      =""
+          _this.payPwd        =""
+          _this.authStatus    =""
+          _this.avatar        =""
           _this.$message(re.data.message);
         }
       }).catch(function (re) {});
@@ -117,7 +153,7 @@ export default{
       let _re = response,_this = this;
       _this.$axios.post('/api-user/users/uploadHeadImage', {headImage:_re.data['filePath']}).then(function (re) {
         if(re.data.code==0){
-          _this.avatar = baseUrl+''+_re.data['filePath'];
+          _this.avatar = process.env.SHOW_IMAGE+'?path='+_re.data['filePath'] + '&sessionId='+_this.$store.getters.token;
           _this.$store.dispatch("setHeadImage",_this.avatar);
           fileList = [];
           // this.$message({type: 'success',message: ''});
@@ -158,13 +194,39 @@ export default{
           _this.$message(re.data.message);
         }
       }).catch(function (re) {});
-    }
+    },
+    deActivate(){
+     this.deactivateDialogVisible=true;
+    },deActivateDialogSubmit(){
+      this.deactivateDialogLoading=true;
+       this.$axios.post('/api-user/user/deactivate', {'userId':this.$store.getters.userUuid}).then((re)=> {
+         this.deactivateDialogLoading=false;
+        if(re.data.code==0){
+          console.log('lewat sini')
+          this.bindInit();
+          this.deactivateDialogVisible=false;
 
+       }else {
+          this.$message(re.data.message);
+        }
+      }).catch((re)=> {});
+      // this.deactivateDialogVisible=false
+    }
   }
 }
 </script>
 <style scoped>
-
+  .deactivate{
+    padding: 20px;
+    text-align: left;
+  }
+  .deactivate_button{
+    background: red;
+    width: 120px;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+  }
   .setting_box{
     padding-left: 20px;
     text-align: left;

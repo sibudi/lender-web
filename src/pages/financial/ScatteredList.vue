@@ -8,7 +8,7 @@
   }
 </i18n>
 <template>
-  <div class="">
+  <div class="mt_100">
         <div class="scatted_bar_bg">
           <div class="df aic scatted_bar"><i class="el-icon-warning" style="color:#FFC018;margin-right:10px;font-size:16px;"></i><p>{{selectCount}} claim telah dipilih, total: <span  class="colC9">Rp：{{$globals.dataUtil.parseNumber(selectAmount)}}</span></p></div>
         </div>
@@ -18,7 +18,7 @@
           <div class="order_box order_table">
             <!-- title -->
               <div class="search_tit" style="position: relative;">
-                <p>Pengecekan</p>
+                <p>Filter</p>
                 <el-dropdown style="position: absolute;right: 20px;top: 4px;">
                   <p><img src="../../assets/images/gengduo.png" height="20" width="20" style="cursor:pointer;"></p>
                   <el-dropdown-menu slot="dropdown" class="table_left_drop">
@@ -33,7 +33,7 @@
               <div class="search_box ele_check">
                 <div class="search_item form_select df aic">
                   <p class="search_item_tit">Jumlah Pinjaman</p>
-                  <p>         
+                  <p>
                     <el-checkbox-group text-color="#00D6C9" fill="#00D6C9" v-model="amountApplys" @change="handleCheck">
                       <el-checkbox v-for="(item,index) in amountList" :label="item.code" :key="index">{{item.name}}</el-checkbox>
                     </el-checkbox-group>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="search_item df aic">
                   <p class="search_item_tit">Batas Waktu</p>
-                  <p>         
+                  <p>
                     <el-checkbox-group text-color="#00d6c9" fill="#00d6c9" v-model="terms" @change="handleCheck">
                       <el-checkbox v-for="(item,index) in termList" :label="item.code" :key="index">{{item.name}}</el-checkbox>
                     </el-checkbox-group>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="search_item df aic">
                   <p class="search_item_tit">Jenis kelamin</p>
-                  <p>         
+                  <p>
                     <el-checkbox-group text-color="#00d6c9" fill="#00d6c9"  v-model="sexlist" @change="handleSexCheck">
                       <el-checkbox label="1">Laki-laki</el-checkbox>
                       <el-checkbox label="2">Perempuan</el-checkbox>
@@ -64,34 +64,46 @@
                   </p>
                 </div>
                 <div class="search_item df aic">
-                  <p class="search_item_tit">Alamat Tempat Tinggal</p>
-                  <p>        
+                  <p class="search_item_tit">Alamat</p>
+                  <p>
                     <el-cascader :options="livingAddressOptions" v-model="liveAddressRo" class="form_select" @active-item-change="getLiveAddressList"
             @change="handleAddressChange" clearable></el-cascader>
                   </p>
                 </div>
+                <div class="search_item df aic">
+                  <p class="search_item_tit">Tujuan Peminjaman</p>
+                  <p>
+                    <el-cascader :options="options" class="form_select"
+            @change="handlePurposeChange" clearable></el-cascader>
+                  </p>
+                </div>
               </div>
               <!-- 列表 -->
-              <div  v-for="item in tableData" class="df aic ele_check" style="padding-left: 15px;">
+              <div  v-for="item in tableData"  class="df aic ele_check" style="padding-left: 15px;">
                 <el-checkbox-group v-model="item.checked" @change="handleCheckedChange(item)">
                   <el-checkbox></el-checkbox>
                 </el-checkbox-group>
                 <ul class="df table_box jcsb f1" @click="goDetail(item.creditorNo)">
-                  <li class="wd150">
+                  <li >
                     <p class="table_item_tit">Tujuan Pinjaman</p>
-                    <p>{{item.borrowingPurposes}}</p>
+                    <p class="text-center">{{item.borrowingPurposes}}</p>
                   </li>
-                  <li class="">
-                    <p class="table_item_tit first_li">Tingkat pengembalian tahunan yang diharapkan</p>
-                    <p>{{item.yearRateFin}}%</p>
-                  </li>
+                 
                   <li>
                     <p class="table_item_tit">Jumlah pinjaman</p>
                     <p>Rp {{$globals.dataUtil.parseNumber(item.amountApply)}}</p>
                   </li>
+                   <li>
+                    <p class="table_item_tit">Asuransi</p>
+                    <p>Rp {{$globals.dataUtil.parseNumber(item.insurance)}}</p>
+                  </li>
                   <li>
                     <p class="table_item_tit">Batas Waktu Pinjaman</p>
-                    <p>{{item.term.charAt(2)=='d'?item.term.substr(0,2)+'hari':'3bulan'}}</p>
+                    <p class="text-center">{{getLabelledTerm(item.term)}}</p>
+                  </li>
+                   <li>
+                    <p class="table_item_tit first_li">Tingkat pengembalian tahunan yang diharapkan</p>
+                    <p class="text-center">{{$globals.dataUtil.parseNumber(item.yearRateFin)}}%</p>
                   </li>
                   <li style="width: 180px;">
                     <div class="table_item_tit df jcsb">
@@ -107,7 +119,7 @@
 
               <div v-if="tableData.length>0" class="df aic" style="margin-top: 30px;">
                 <div class="scatteb_bot df aic">
-                  <p class="bot_cirlcle" :class="isAllList?'active':''" @click="handleCheckAll"></p> 
+                  <p class="bot_cirlcle" :class="isAllList?'active':''" @click="handleCheckAll"></p>
                   <span>Pilih semua</span>
                 </div>
                 <div class="add_cart df aic">
@@ -131,6 +143,9 @@ import store from '../../store'
 export default{
   data(){
     return {
+      lockedBalance:0,
+      currentBalance:0,
+      investingBanlance:0,
       selectCount: 0, //选中的个数
       selectAmount:0, //选中债权的总金额
       tableAmount:0,
@@ -151,17 +166,46 @@ export default{
       liveAddressRo: ['', ''],
       tableData:[],
       amountList:[
-        {code:'#40',name:'<40w'},
-        {code:'40#80',name:'40w~80w'},
-        {code:'80#120',name:'80w~120W'},
-        {code:'120#',name:'>120w'}
+        // {code:'#40',name:'<40w'},
+        // {code:'40#80',name:'40w~80w'},
+        // {code:'80#120',name:'80w~120W'},
+        {code:'119#',name:'1,2 Juta'}
       ],
       termList:[
-        {code:'30d',name:'30hari'},
-        {code:'30m',name:'3 bulan'},
+        {code:'30d',name:'30 hari'},
+        // {code:'30m',name:'3 bulan'},
       ],
+      options: [{
+          value: 'Biaya Pendidikan',
+          label: 'Biaya Pendidikan'
+        }, {
+          value: 'Biaya Renovasi Rumah',
+          label: 'Biaya Renovasi Rumah'
+        }, {
+          value: 'Modal Usaha',
+          label: 'Modal Usaha'
+        }, {
+          value: 'Biaya Pernikahan',
+          label: 'Biaya Pernikahan'
+        }, {
+          value: 'Pembelian Barang Dagangan',
+          label: 'Pembelian Barang Dagangan'
+        }, {
+          value: 'Uang sewa',
+          label: 'Uang sewa'
+        }, {
+          value: 'Pembelian Barang Elektronik',
+          label: 'Pembelian Barang Elektronik'
+        }, {
+          value: 'Biaya Pengobatan',
+          label: 'Biaya Pengobatan'
+        }, {
+          value: 'Keperluan Pribadi Lainnya',
+          label: 'Keperluan Pribadi Lainnya'
+        }],
       // 查询条件
       amountApplys:[],
+      purposeRo:'',
       terms:[],
       checkAgelist:[18,50],
       marks: {
@@ -178,7 +222,7 @@ export default{
   },
   created(){
       let _this = this;
-        _this.getAddressList(2,1).then(function(value) { 
+        _this.getAddressList(2,1).then(function(value) {
           _this.fatherArr=value;
           _this.livingfatherArr=value;
           _this.livingAddressOptions=value;
@@ -192,13 +236,30 @@ export default{
     handleCheckedChange(item){
       let _this = this;
       if(item.checked){
-        _this.selectCount = _this.selectCount+1;
-        _this.selectAmount = parseFloat(_this.selectAmount) + parseFloat(parseFloat(item.amountApply)-parseFloat(item.amountBuy));
-        _this.selectData.push({goodsId:item.creditorNo,item:item,amount:(parseFloat(item.amountApply)-parseFloat(item.amountBuy))/10000});
+        let amount = parseFloat(parseFloat(item.amountApply)-parseFloat(item.amountBuy)+parseFloat(item.insurance));
+        if((parseFloat(_this.selectAmount)+parseFloat(amount))<parseFloat(_this.currentBalance)){
+          _this.selectCount = _this.selectCount+1;
+          _this.selectAmount = parseFloat(_this.selectAmount) + parseFloat(amount);
+          _this.selectData.push({goodsId:item.creditorNo,item:item,amount:((parseFloat(item.amountApply)-parseFloat(item.amountBuy))/parseFloat(item.amountApply))*100});
+          var isCheckedAll = true
+          _this.tableData.map(v=>{
+            if(v.checked ==false){
+              isCheckedAll = false;
+            }
+          })
+          if(isCheckedAll){
+            _this.isAllList =true;
+          }
+        }
+        else{
+            item.checked= false;
+            _this.isAllList =false;
+            _this.$message("Saldo tidak cukup");
+        }
       }else{
         _this.isAllList = false;
         _this.selectCount = _this.selectCount-1;
-        _this.selectAmount = parseFloat(_this.selectAmount) - parseFloat(parseFloat(item.amountApply)-parseFloat(item.amountBuy));
+        _this.selectAmount = parseFloat(_this.selectAmount) - parseFloat(parseFloat(item.amountApply)-parseFloat(item.amountBuy)+parseFloat(item.insurance));
         _this.selectData.forEach(v=>{
           if(v.goodsId == item.creditorNo){
             _this.selectData.splice(v,1);
@@ -208,13 +269,17 @@ export default{
     },
     handleCheckAll(){
       let _this = this;
+      
+      if(_this.tableAmount <_this.currentBalance){
       _this.isAllList = !_this.isAllList;
       if(_this.isAllList){
         _this.tableData.forEach(v=>{
           v.checked = true;
+          _this.selectCount++;
+          _this.selectAmount += parseFloat(parseFloat(v.amountApply)-parseFloat(v.amountBuy)+parseFloat(v.insurance));
         })
-        _this.selectCount = _this.totalCount;
-        _this.selectAmount = _this.tableAmount;
+        // _this.selectCount = _this.totalCount;
+        // _this.selectAmount = _this.tableAmount;
       }else{
         _this.tableData.forEach(v=>{
           v.checked = false;
@@ -223,6 +288,33 @@ export default{
         _this.selectCount = 0;
         _this.selectAmount = 0;
       }
+    }
+    else{
+      let temp = 0;
+      _this.$message("Saldo tidak cukup");
+      _this.tableData.forEach(v=>{
+        let amount = parseFloat(parseFloat(v.amountApply)-parseFloat(v.amountBuy));
+        if((parseFloat(temp)+parseFloat(amount))<parseFloat(_this.currentBalance)){
+          temp =(parseFloat(temp)+parseFloat(amount));
+          v.checked = true;
+          _this.handleCheckedChange(v);
+        }
+        else{
+
+        }
+      })
+    }
+    },
+    getLabelledTerm(e){
+      if(e.endsWith('d')){
+        return e.substring(0, e.length - 1) + " Hari";
+      }else if(e.endsWith('w')){
+        return e.substring(0, e.length - 1) + " Minggu";
+      }else if(e.endsWith('m')){
+        return e.substring(0, e.length - 1) + " Bulan";
+      }
+      else
+      return e;
     },
     goDetail(id){
       this.$router.push({ path:'/ScatteredDetail',query: {uid:id}});
@@ -246,6 +338,10 @@ export default{
       this.currentPage = 1;
       this.fetchData();
     },
+    handlePurposeChange(e){
+      this.purposeRo = e[0];
+      this.fetchData();
+    },
     handleSort(a,b){
       this.sortProperty = a;
       this.sortDirection = b;
@@ -262,6 +358,7 @@ export default{
         sex: _this.sex,
         province: _this.province,
         city: _this.city,
+        borrowingPurpose: _this.purposeRo,
         pageSize:_this.pageSize,
         pageNo: _this.currentPage,
         userId: _this.$store.getters.userUuid,
@@ -273,7 +370,9 @@ export default{
           _this.tableAmount = re.data.data.amount;
           _this.tableData = re.data.data.bo.content;
           _this.totalCount = re.data.data.bo.totalElements;
-          _this.tableData.forEach(v=>{
+          // _this.isAllList = false
+          _this.tableData.forEach((v)=>{
+            v.checked = false
             v.yearRateFin = parseFloat(v.yearRateFin*100).toFixed(2);
             v.percentage = parseFloat(((parseFloat(v.amountBuy)/parseFloat(v.amountApply))*100).toFixed(2));
             if(_this.isAllList){  //选择了剩余全买
@@ -288,12 +387,27 @@ export default{
                     _this.tableData[i].checked = true;
                   }
                 }
-              } 
+              }
           }
+        }else if(re.data.code== 10001 || re.data.code == 10002){   //未实名或不是超投都去实名认证
+          _this.$message({type: 'warning',message: re.data.message});
+          setTimeout(()=>{_this.$router.push("/authentication")}, 1000);
+        }else if(re.data.code== 10009){   //未实名或不是超投都去实名认证
+          _this.$message(re.data.message);
+          _this.tableData = [];
         }else {
           _this.$message(re.data.message);
         }
-      }).catch(function (re) {}); 
+      }).catch(function (re) {});
+      _this.$axios.post('/api-user/user/selectUserAccountSession', {'userId':_this.$store.getters.userUuid}).then(function (re) {
+        if(re.data.code==0){
+          _this.currentBalance = re.data.data.currentBalance;
+          _this.lockedBalance = re.data.data.lockedBalance;
+          _this.investingBanlance = re.data.data.investingBanlance;
+        }else {
+          _this.$message(re.data.message);
+        }
+      }).catch(function (re) {});
     },
     handleSizeChange(val) {
       this.pageSize = val;
@@ -308,6 +422,7 @@ export default{
       let _this = this;
       let _selectData = [];
       _this.selectData.forEach(v=>{
+     
         _selectData.push({goodsId:v.goodsId,amount:v.amount})
       })
       if(!_this.isAllList && _selectData.length == 0){
@@ -341,7 +456,7 @@ export default{
         var p=new Promise(function(resolve,reject){
           _this.$axios.post('/api-system/system/getSysDict', {"distLevel" : h,"parentCode": g,}).then(function (response) {
             let re=[],res=response.data.data;
-            res.forEach((i)=>{  
+            res.forEach((i)=>{
               let obj={};
               obj["values"]=i.distCode;
               obj["value"]=i.distName;
@@ -352,7 +467,7 @@ export default{
             resolve(re);
             }).catch(function (re) {
               console.log(re);
-          });; 
+          });;
         })
         return p; // 返回p实例对象
     },
@@ -363,7 +478,7 @@ export default{
         for(let x in _this.livingAddressOptions){
           _this.livingAddressOptions[x].children = [];
         }
-        
+
         for(let f in _this.fatherArr){
           if(_this.fatherArr[f].value==e[0]){
             _this.livingfatherCode=_this.fatherArr[f].values;
@@ -371,7 +486,7 @@ export default{
           }
         }
         // 获取第二级list
-        _this.getAddressList(3,_this.livingfatherCode).then(function(e) { 
+        _this.getAddressList(3,_this.livingfatherCode).then(function(e) {
           for(let f in e){
             e[f].children="";
           }
@@ -379,12 +494,18 @@ export default{
           // _this.livingfatherArr=e;
         });
         return;
- 
+
     },
   }
 }
 </script>
 <style>
+.mt_100{
+  margin-top: 100px;
+}
+.text-center{
+text-align: center;
+}
 .scatted_bar_bg{
   width:100%;
   min-width: 1200px;
@@ -488,6 +609,7 @@ export default{
   color:rgba(87,104,119,1);
   margin-bottom: 16px;
   height: 30px;
+  text-align: center;
 }
 
 

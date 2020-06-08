@@ -78,7 +78,7 @@
 			getImgCode(){
 				if(!this.phoneNum){
 					this.$message({
-			            type: 'warnning',
+			            type: 'warning',
 			            message: 'Tidak boleh kosong'
 			          });
 					return;

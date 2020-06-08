@@ -259,6 +259,9 @@ input, textarea {
 .el-button--primary:hover {
     background-color: #2AD2C8!important;
 }
+.el-message{
+    z-index: 1000000!important;
+    }
 .el-message-box__title {
     border-left: 4px solid #2AD2C8;
     padding: 0 10px;

@@ -33,9 +33,9 @@
     "en":{
     	"yearRate":"Tingkat bunga tahunan yang",
     	"loanTerm":"batas waktu",
-    	"surplusAcount":"Jumlah investasi",
-    	"investNow":"berinvestasi",
-    	"alreadyInvestmentAgreement":"Telah membaca              perjanjian investasi",
+    	"surplusAcount":"Jumlah pendanaan",
+    	"investNow":"pendanaan",
+    	"alreadyInvestmentAgreement":"Telah membaca              perjanjian pendanaan",
     	"otherQualityRecommend":"Rekomendasi kualitas lainnya",
     	"_name":"Nama:",
     	"_idCard":"Nomor ID:",

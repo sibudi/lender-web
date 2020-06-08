@@ -13,7 +13,7 @@
       <el-breadcrumb-item>Klaim</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
-  
+
   <div class='ele_table'>
     <div class="right_detail_tit df aic jcsb">
       <p>Nomor order：{{rights.id}}</p>
@@ -21,7 +21,7 @@
     </div>
     <el-table :data="tableData"style="width: 100%" class="rights_list">
       <el-table-column prop="creditorNo" label="Nomor Klaim"></el-table-column>
-      <el-table-column label="Jumlah investasi">
+      <el-table-column label="Jumlah pendanaan">
         <template slot-scope="scope">
           <span>Rp {{$globals.dataUtil.parseNumber(scope.row.amountBuy)}}</span>
         </template>
@@ -41,11 +41,11 @@
           <span><i class="status_quare" :class="setClass(scope.row.status)"></i>{{getOrderStatus(scope.row.status)}}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="realName" label="Nama pemberi pinjaman"></el-table-column>
+      <el-table-column prop="realName" label="Nama Peminjam"></el-table-column>
       <el-table-column prop="" label="Terapkan">
         <template slot-scope="scope">
           <div class="df record_operate">
-            <p v-if="scope.row.status !=5"@click="gopay(scope.row.id)">Lihat kontraknya</p>
+            <p v-if="scope.row.status !=5"@click="gopay(scope.row.creditorNo)">Lihat kontraknya</p>
             <p v-if="scope.row.status ==5" style="color:#8F9DAA;">Lihat kontraknya</p>
             <p @click="goDetail(scope.row)">Melihat rincian</p>
           </div>
@@ -85,7 +85,9 @@ export default{
   },
   methods: {
     gopay(row){
-      this.$router.push({path: '/guaranteeProtacol',query:{creditorNo:row}});
+      console.log(row);
+      window.open("http://api.uat.doitglotech.cloud/contract-signature/showcontract/" + row, '_blank');
+      // this.$router.push({path: '/guaranteeProtacol',query:{creditorNo:row}});
     },
     goDetail(row){
       this.$router.push('/rightsdetail');
@@ -128,7 +130,7 @@ export default{
         }else {
           _this.$message(re.data.message);
         }
-      }).catch(function (re) {}); 
+      }).catch(function (re) {});
     },
   }
 }

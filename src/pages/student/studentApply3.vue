@@ -299,7 +299,7 @@
 					<el-form-item :label= '$t("idCardUrl")' prop="idCardUrl" >
 				      	<div class="uploadImg">
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  :data="upLoadData"
 							  list-type="picture-card"
 							  :limit='1'
@@ -319,7 +319,7 @@
 					<el-form-item :label= '$t("payDetailUrl")' prop="payDetailUrl" >
 				      	<div class="uploadImg">
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  :data="upLoadData"
 							  list-type="picture-card"
 							  :limit='1'
@@ -340,7 +340,7 @@
 				      	<div class="uploadImg">
 				      		<a id="aaa" :href="downloadFileUrl">< Download disini ></a>
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  :data="upLoadData"
 							  list-type="picture-card"
 							  :limit='1'
@@ -360,7 +360,7 @@
 					<el-form-item :label= '$t("aggrementInHandUrl")' prop="aggrementInHandUrl" >
 				      	<div class="uploadImg">
 							<el-upload
-							  :action="BASE_URL"
+							  :action="UPLOAD_IMAGE"
 							  :data="upLoadData"
 							  list-type="picture-card"
 							  :limit='1'
@@ -454,7 +454,7 @@
 		    };
 			return{
 				canPass: true,
-				BASE_URL:'',
+				UPLOAD_IMAGE:'',
 				uploadImgs: [{name:'',url:''}],
 				uploadName: '',
 				uploadName1: '',
@@ -575,7 +575,7 @@
 		},
 		methods:{
 			init(){
-				this.BASE_URL=baseUrl+"api-upload/upload/image";
+				this.UPLOAD_IMAGE=process.env.UPLOAD_IMAGE;
 				this.upLoadData['sessionId']=this.$store.getters.token;
 				this.getaddress1(0);
 				this.getaddress2(0);

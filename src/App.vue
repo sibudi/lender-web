@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <indextop></indextop>
-    <div id="contentttt"><router-view/></div>
+    <div id="content-body"><router-view/></div>
     <Loading v-show="showLoading">{{showLoading}}</Loading>
     <index-bottom v-if="!noFooter" ></index-bottom>
   </div>
@@ -54,8 +54,9 @@
     color: #2c3e50;
     background-color: #fafafa;
   };
-  #contentttt {
+  #content-body {
     width: 100%;
+    margin-top:80px;
     min-width: 1200px;
   }
 </style>

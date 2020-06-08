@@ -33,11 +33,12 @@ const i18n = new VueI18n({
 Vue.config.productionTip = false
 
 Vue.prototype.$axios = axios
-
-// axios.defaults.baseURL = 'http://stb.www.do-it.co.id/'; //测试环境
-axios.defaults.baseURL = 'https://www.do-it.id/';  //线上环境
-// axios.defaults.baseURL = 'http://172.17.59.215:8888/';
-// axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
+//ahalim: Change URL into the same lender url
+// // axios.defaults.baseURL = 'http://stb.www.do-it.co.id/'; //测试环境
+// axios.defaults.baseURL = 'https://www.do-it.id/';  //线上环境
+// // axios.defaults.baseURL = 'http://172.17.59.215:8888/';
+// // axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8';
+axios.defaults.baseURL =  process.env.BASE_URL;  //线上环境
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // console.log(router.currentRoute.fullPath)
@@ -105,7 +106,7 @@ axios.interceptors.response.use(function (response) {
   });
 
 function isLogin(){
-  if(store.getters.token){  
+  if(store.getters.token){
     store.dispatch("setLogin",true)
   }else {
     store.dispatch("setLogin",false)
@@ -115,7 +116,7 @@ function isLogin(){
   return store.getters.isLogin;
 }
 router.beforeEach((to, from, next) => {
-  
+
     // console.log(to,"to")
 
     if(to.meta.auth) { //是否验证
