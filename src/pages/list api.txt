@@ -1,0 +1,177 @@
+
+
+https://lender-uat.doitglotech.co.id/
+
+indexTop.vue :
+api-order/order/getRepayRate
+
+invesShowList.vue :
+/api-user/user/userAuthBankInfoBySession
+
+bindCard.vue :
+
+/web/credit/submitCompletion
+/api-user/user/bindBankCard
+
+
+home.vue :
+/api-user/user/selectUserAccountSession
+
+investment.vue :
+/api-user/user/userAuthBankInfoBySession
+/api-order/order/productconf/pathProductconfList
+
+purcahseFixed.vue :
+/api-order/order/selectScatterstandardList
+/api-order/p2p/pay/income/immediateInvestmentFinancing
+
+purchaseInvestment.vue :
+/api-order/order/selectScatterstandardList
+/api-order/order/selectLenderUserInfo
+/api-order/p2p/pay/income/immediateInvestment
+
+studentApply.vue :
+/api-user/user/studentLoanInit
+
+cart.vue :
+/api-order/shoppingCart/getList
+/api-user/user/selectUserAccount
+
+step1.vue :
+/api-order/order/orderSubmit
+
+step2.vue :
+/api-order/shoppingCart/getList
+/api-order/order/sendDigisign
+
+step3.vue :
+api-order/order/checkDigisign
+api-order/order/signOrder
+
+step4.vue :
+/api-system/system/sendSmsCode
+/api-order/order/checkPayPWD
+/api-order/order/orderPay
+
+step5.vue :
+api-order/shoppingCart/getList
+
+pay.vue :
+/api-order/order/failOrder/
+/api-order/order/orderPay
+/api-system/system/sendSmsCode
+/api-order/order/checkPayPWD
+
+AssetDetail.vue :
+/api-user/user/selectUserAccountSession
+/api-user/user/getAccountHistoryByType
+
+BasicSetting.vue :
+/api-user/user/userBasicInfo
+/api-user/users/uploadHeadImage
+/api-system/system/sendSmsCode
+/api-user/user/deactivate
+/api-user/user/updateUserBankInfo
+
+CreidtorDetail.vue :
+/api-order/scatterStandard/selectScatterstandardById
+
+CreditorRight.vue :
+/api-order/order/selectOrderDetail
+
+History.vue :
+/api-order/scatterStandard/selectLoanHistory
+
+Message.vue :
+api-user/users/updateUserMessage
+/api-user/users/getMessageList
+
+Records.vue :
+/api-order/order/selectUsrOrderList
+
+ResetPassword.vue :
+/api-user/users/resetPayPassword
+
+Withdrawal.vue :
+/api-user/user/userBankAndAccountInfo
+api-user/user/withdrawDeposit
+
+HistoryDetail.vue :
+/api-order/scatterStandard/selectLoanHistory
+
+ScatteredDetail.vue :
+/api-order/order/orderSubmit
+/api-order/shoppingCart/addList
+/api-order/scatterStandard/selectScatterstandardById
+
+ScatteredList.vue :
+/api-order/scatterStandard/selectScatterstandardList
+/api-user/user/selectUserAccountSession
+/api-order/shoppingCart/addAll
+/api-order/shoppingCart/addList
+/api-system/system/getSysDict
+
+Login.vue :
+/api-user/user/getImageCapcha
+/api-system/system/sendSmsCode
+/api-user/user/login
+
+studentApply.vue :
+/api-user/user/studentStepInfo
+/api-user/user/studentLoanInit
+
+studentApply1.vue :
+/api-user/user/studentStepOneInfo
+/api-system/system/bankList
+/api-system/system/getSysDict
+/api-user/user/studentStepOneAdd
+
+studentApply2.vue :
+/api-user/user/studentStepTwoInfo
+/api-system/system/bankList
+/api-system/system/getSysDict
+/api-user/user/studentStepTwoAdd
+
+studentApply3.vue :
+/api-user/user/studentStepThreeInfo
+/api-system/system/getSysDict
+/api-user/user/studentStepThreeAdd
+
+studentApply4.vue :
+/api-user/user/studentStepFourInfo
+/api-user/user/studentStepFourAdd
+
+Authentication.vue :
+/api-user/user/userAuthBankInfoBySession
+/api-system/system/getSysDict
+/api-user/user/userAdvanceVerify
+/api-user/user/bindBankCard
+/api-user/user/userBasicInfo
+
+Debt.vue :
+/api-order/order/selectCreditorinfo
+
+DebtDetail.vue :
+/api-order/order/selectLenderUserInfo
+
+Me.vue :
+/api-user/user/userBasicInfo
+
+AccountViews.vue :
+/api-user/user/userBasicInfo
+
+InvestRecord.vue :
+/api-order/order/selectUsrOrderList
+
+PersonalInfo.vue :
+/api-user/user/userBasicInfo
+
+
+File :
+https://lender-uat.doitglotech.co.id/api-upload/upload/image
+https://lender-uat.doitglotech.co.id/api-upload/upload/file
+
+https://lender-uat.doitglotech.co.id/api-upload/upload/showImage
+https://lender-uat.doitglotech.co.id/api-upload/upload/downloadAttachment
+
+http://api.uat.doitglotech.cloud/contract-signature/showcontract/

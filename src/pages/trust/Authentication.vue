@@ -39,7 +39,7 @@
 			"job": "Pekerjaan",
 			"workField": "Industri",
 			"liveAddressRo": "Alamat",
-			"liveDetailed": "Alamat Terinci",
+			"liveDetailed": "Alamat Lengkap",
 			"religion": "Agama",
 			"npwpNo": "NPWP No.",
 			"yearSalary": "Pendapatan Tahunan",
@@ -47,7 +47,7 @@
 			"isInsurance":"Asuransi",
 			"workTime": "Lama Bekerja",
 			"otherSalaryFrom": "Sumber Aset Lainnya",
-			"submiteNow": "Ajukan",
+			"submiteNow": "Daftar",
 			"upImg": "Foto KTP",
 			"upSK":"Surat Kuasa",
 			"bank":"Bank",
@@ -103,7 +103,7 @@
 				</el-form-item>
 				<!-- 年龄 -->
 				<el-form-item :label='$t("age")' prop="age" 
-				:rules="[{ required: true, message: ''}, 
+				:rules="[{ required: true, message: 'Mohon pilih tanggal lahir'}, 
 					{
 						validator: (rule, value, callback) => {
 					if (!value) {
@@ -149,7 +149,7 @@
 					></el-cascader>
 				</el-form-item>
 				<!-- 详细地址 -->
-				<el-form-item :label='$t("liveDetailed")' prop="liveDetailed" :rules="[{ required: true, message: 'Mohon isi alamat rinci'}]" >
+				<el-form-item :label='$t("liveDetailed")' prop="liveDetailed" :rules="[{ required: true, message: 'Mohon isi alamat lengkap'}]" >
 				    <el-input v-model="searchForm.liveDetailed"  maxlength="50"></el-input>
 				</el-form-item>
 				<!-- 宗教 -->
@@ -213,7 +213,7 @@
 						}, trigger: ['change'] 
 					} ]" >
 				    <div class="uploadImg" style="text-align:left;">
-							<el-upload accept="image/*" v-model="searchForm.idCardImage" :action="UPLOAD_IMAGE" :limit='1' :data="upload_ktp" :on-success='handleAvatarSuccess' :on-preview="handlePictureCardPreview">
+							<el-upload accept="image/*" v-model="searchForm.idCardImage" 	:headers="HEADER_CONFIG" :action="UPLOAD_IMAGE" :limit='1' :data="upload_ktp" :on-success='handleAvatarSuccess' :on-preview="handlePictureCardPreview">
 							  <el-button size="small" type="primary"><i class="el-icon-upload"></i>Unggah file</el-button>
 							</el-upload>
 							<el-dialog :visible.sync="dialogImageVisible">
@@ -240,7 +240,9 @@
 					<el-form-item :label='$t("upSK")' prop="suratKuasaImage" 
 						 >
 				    <div class="uploadImg" style="text-align:left;">
-							<el-upload  v-model="searchForm.suratKuasaImage" accept=".doc, .docx, application/pdf" :action="UPLOAD_FILE" :limit='1' :data="upload_sk" :on-success='handleAvatarSuccess2' 	:on-preview="handlePictureCardPreview2"
+							<el-upload  v-model="searchForm.suratKuasaImage"
+							:headers="HEADER_CONFIG"
+							 accept=".doc, .docx, application/pdf" :action="UPLOAD_FILE" :limit='1' :data="upload_sk" :on-success='handleAvatarSuccess2' 	:on-preview="handlePictureCardPreview2"
 							>
 							  <el-button size="small" type="primary"><i class="el-icon-upload"></i>Unggah file</el-button>
 							</el-upload>
@@ -274,7 +276,7 @@
 		<div class="form_con">
 				<div class="form_tit">Silahkan isi Password Transaksi</div>
 					<div class="form_main">
-				<el-form-item :label='$t("payPwd")' prop="payPwd" :rules="[{ required: true, message: ''},
+				<el-form-item :label='$t("payPwd")' prop="payPwd" :rules="[{ required: true, message: 'Mohon isi password'},
 					{
 						validator: (rule, value, callback) => {
 					if (!value) {
@@ -292,7 +294,7 @@
 				]" >
 					<el-input v-model="bankForm.payPwd" placeholder="" auto-complete="off"  show-password></el-input>
 				</el-form-item>
-				<el-form-item :label='$t("repayPwd")' prop="repayPwd" :rules="[{ required: true, message: ''},
+				<el-form-item :label='$t("repayPwd")' prop="repayPwd" :rules="[{ required: true, message: 'Mohon isi konfirmasi Password'},
 						{
 						validator: (rule, value, callback) => {
 					if (!value) {
@@ -341,6 +343,7 @@
 	export default {
 		data(){
 			return {
+				HEADER_CONFIG:{},
 				logoutDialogVisible:false,
 				logoutDialogMessage:'',
 				fullscreenLoading: '',
@@ -475,6 +478,9 @@
 				this.$router.push({path: e});
 			},
 			init(){
+				this.HEADER_CONFIG={
+					"Authorization":process.env.AUTHORIZATION_API
+				};
 				this.UPLOAD_IMAGE=process.env.UPLOAD_IMAGE;
 				this.UPLOAD_FILE=process.env.UPLOAD_FILE;
 				this.upload_ktp['sessionId']=this.$store.getters.token;
@@ -777,7 +783,6 @@
 		}
 		,
 		updated(){
-			console.log(this.searchForm.sex)
       // console.log(this.birfatherArr)
       // console.log(this.fatherCode)
       // console.log(this.fatherIndex)

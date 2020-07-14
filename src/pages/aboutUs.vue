@@ -28,7 +28,6 @@
 		height:208px;
 		padding: 72px 82px 119px;
 		font-size:20px;
-		font-family:PingFangSC-Medium;
 		font-weight:500;
 		color:rgba(22,66,118,1);
 		line-height:26px;

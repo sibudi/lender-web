@@ -246,7 +246,8 @@
 					    <el-input v-model="searchForm.familyMember"  maxlength="12"></el-input>
 					</el-form-item>	
 					<!-- bankName -->
-					<el-form-item v-if="" :label= '$t("bankName")' prop="bankName" >
+				<!-- if -->
+					<el-form-item :label= '$t("bankName")' prop="bankName" >
 					    <el-select v-model="searchForm.bankName" style="width: 100%">
 						    <el-option
 						      v-for="item in bankList"

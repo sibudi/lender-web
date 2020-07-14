@@ -149,7 +149,7 @@ export default{
 <style scoped>
 .order_history{
   width: 1200px;
-  margin: 0px auto 53px;
+  margin: 100px auto 53px;
   text-align: left;
 }
 

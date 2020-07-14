@@ -11,10 +11,10 @@
     "clean": "rm -rf dist/*",
     "compile-test": "node build/build-test.js",
     "compile": "node build/build.js",
-    "zip": "cd dist && touch dist.tar.gz && tar --exclude=dist.tar.gz -zcf dist.tar.gz .",
+    "zip": "cd dist && touch dist.tar.gz && tar --xform s:'./':: --exclude=dist.tar.gz -zcf dist.tar.gz ./",
     "deploy": "aliyun oss cp dist/dist.tar.gz oss://doit-build-5263863254564512/lender-web/ -f",
     "build-test": "npm run clean && npm run compile-test && npm run zip",
-    "build":"npm run clean && npm run compile && npm run zip",
+    "build": "npm run clean && npm run compile && npm run zip",
     "publish-test": "npm run build-test && npm run deploy"
   },
   "dependencies": {

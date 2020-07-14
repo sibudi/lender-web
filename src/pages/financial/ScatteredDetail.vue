@@ -114,10 +114,10 @@
             <img src="../../assets/images/cart_icon.png" height="26" width="28" />
             <button @click="addCart">Masukkan ke keranjang</button>
           </div>
-          <div class="add_cart df aic">
+          <!-- <div class="add_cart df aic">
             <img src="../../assets/images/pay_icon.png" height="26" width="28" />
             <button @click="handlePay">Proses Pembayaran</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -299,7 +299,7 @@ export default {
         .then(function(re) {
           loading.close();
           if (re.data.code == 0) {
-            _this.$message({ type: "success", message: "success" });
+            _this.$message({ type: "success", message: "Berhasil menambahkan ke keranjang" });
           } else if (re.data.code == 10001 || re.data.code == 10002) {
             //未实名或不是超投都去实名认证
             _this.$message({ type: "warning", message: re.data.message });

@@ -2,7 +2,7 @@
 	<div id="investmentBody">
 
         <div id="contents">
-            <a href="javascript :history.back(-1)" id="topBack"><img src="../assets/img/iconGoBack.png" alt=""><span>Kembali ke halaman sebelumnya</span></a>
+            <!-- <a href="javascript :history.back(-1)" id="topBack"><img src="../assets/img/iconGoBack.png" alt=""><span>Kembali ke halaman sebelumnya</span></a> -->
             <div id="topLists">
                 <div class="topList Finance" @click="checkRecuit(0)" data-title="Finance"><img src="../assets/img/iconFinance.png" alt=""><span>Finance</span></div>
                 <div class="topList Marketing" @click="checkRecuit(1)" data-title="Marketing"><img src="../assets/img/iconMarketing.png" alt=""><span>Marketing</span></div>

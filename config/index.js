@@ -38,6 +38,7 @@ module.exports = {
 
   build: {
     // Template for index.html
+    cssSourceMap: true,
     index: path.resolve(__dirname, '../dist/index.html'),
 
     // Paths

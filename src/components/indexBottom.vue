@@ -60,7 +60,7 @@
       <div>
         <p class="proldoc_tit">DISCLAIMER RISIKO:</p>
         <div class="df jcsb"  :class="showMores?'hei280':'down'">
-          <div class="bot_proldoc_item f1" style="margin-right:46px;font-family:raleway;text-align:justify">
+          <div class="bot_proldoc_item f1" style="margin-right:46px;text-align:justify">
             1.  Layanan Pinjam Meminjam Berbasis Teknologi Informasi merupakan kesepakatan perdata antara Pemberi Pinjaman dengan Penerima Pinjaman, sehingga segala risiko yang timbul dari kesepakatan tersebut ditanggung sepenuhnya oleh masing-masing pihak.<br>
             2.  Risiko kredit atau gagal bayar ditanggung sepenuhnya oleh Pemberi Pinjaman. Tidak ada lembaga atau otoritas negara yang bertanggung jawab atas risiko gagal bayar ini.<br>
             3.  Penyelenggara dengan persetujuan dari masing-masing Pengguna (Pemberi Pinjaman dan/atau Penerima Pinjaman) mengakses, memperoleh, menyimpan, mengelola, dan/atau menggunakan data pribadi Pengguna ("Pemanfaatan Data") pada atau di dalam benda, perangkat elektronik (termasuk smartphone atau telepon seluler), perangkat keras (hardware) maupun lunak (software), dokumen elektronik, aplikasi atau sistem elektronik milik Pengguna atau yang dikuasai Pengguna, dengan memberitahukan tujuan, batasan, dan mekanisme Pemanfaatan Data tersebut kepada Pengguna yang bersangkutan sebelum memperoleh persetujuan yang dimaksud.<br>
@@ -70,7 +70,7 @@
             7.  Pengguna harus membaca dan memahami informasi ini sebelum membuat keputusan menjadi Pemberi Pinjaman atau Penerima Pinjaman.<br>
             8.  Pemerintah yaitu dalam hal ini Otoritas Jasa Keuangan, tidak bertanggung jawab atas setiap pelanggaran atau ketidakpatuhan oleh Pengguna, baik Pemberi Pinjaman maupun Penerima Pinjaman (baik karena kesengajaan atau kelalaian Pengguna) terhadap ketentuan peraturan perundang-undangan maupun kesepakatan atau perikatan antara Penyelenggara dengan Pemberi Pinjaman dan/atau Penerima Pinjaman.<br>
           </div>
-          <div class="bot_proldoc_item f1" style="font-family:raleway;text-align:justify">
+          <div class="bot_proldoc_item f1" style="text-align:justify">
         9.  Setiap transaksi dan kegiatan pinjam meminjam atau pelaksanaan kesepakatan mengenai pinjam meminjam antara atau yang melibatkan Penyelenggara, Pemberi Pinjaman, dan/atau Penerima Pinjaman wajib dilakukan melalui escrow account dan virtual account sebagaimana yang diwajibkan berdasarkan Peraturan Otoritas Jasa Keuangan Nomor 77/POJK.01/2016 tentang Layanan Pinjam Meminjam Uang Berbasis Teknologi Informasi dan pelanggaran atau ketidakpatuhan terhadap ketentuan tersebut merupakan bukti telah terjadinya pelanggaran hukum oleh Penyelenggara sehingga Penyelenggara wajib menanggung ganti rugi yang diderita oleh masing-masing Pengguna sebagai akibat langsung dari pelanggaran hukum tersebut di atas tanpa mengurangi hak Pengguna yang menderita kerugian menurut Kitab Undang-Undang Hukum Perdata.<br>
         PT Glotech Prima Vista merupakan badan hukum yang didirikan berdasarkan Hukum Republik Indonesia. Berdiri sebagai perusahaan yang telah diatur oleh dan dalam pengawasan Otoritas Jasa Keuangan (OJK) di Indonesia, Perusahaan menyediakan layanan interfacing  sebagai penghubung pihak yang memberikan pinjaman dan pihak yang membutuhkan pinjaman meliputi pendanaan dari individu, organisasi, maupun badan hukum kepada individu atau badan hukum tertentu. Perusahaan tidak menyediakan segala bentuk saran atau rekomendasi pendanaan terkait pilihan-pilihan dalam situs ini.<br>
         Isi dan materi yang tersedia pada situs Do-It dimaksudkan untuk memberikan informasi dan tidak dianggap sebagai sebuah penawaran, permohonan, undangan, saran, maupun rekomendasi untuk pendanaan sekuritas, produk pasar modal, atau jasa keuangan lainya. Perusahaan dalam memberikan jasanya hanya terbatas pada fungsi administratif.<br>
@@ -135,7 +135,6 @@ hr{
 }
 .bottom_tit{
   font-size:15px;
-  font-family:raleway;
   font-weight:bold;
   color:rgba(255,255,255,1);
   margin-bottom: 30px;
@@ -170,7 +169,6 @@ hr{
 }
 .bot_proldoc_box .proldoc_tit{
   font-size: 20px;
-  font-family:Raleway;
   font-weight:400;
   margin-bottom: 19px;
 }
@@ -208,7 +206,6 @@ overflow: hidden;
 }
 .bot_more_item a{
   color: rgb(197, 234, 247);
-  font-family: Raleway;
 }
 .bot_more_item p{
   margin-bottom: 20px;
@@ -217,7 +214,6 @@ overflow: hidden;
 }
 .bot_more_item .bot_more_tit{
   font-size: 15px;
-  font-family:Raleway;
   font-weight:1000;
   
 }
@@ -227,7 +223,6 @@ overflow: hidden;
   text-align: center;
   font-size: 15px;
   cursor: pointer;
-  font-family: Raleway;
 }
 .bot_more_line:before{
   position: absolute;

@@ -80,7 +80,6 @@
 .bread_bar .el-breadcrumb{
   margin: 24px 0 16px;
   font-size:18px;
-  font-family:PingFangSC-Medium;
   font-weight:500;
 }
 .bread_bar .el-breadcrumb__item:last-child .el-breadcrumb__inner, .el-breadcrumb__item:last-child .el-breadcrumb__inner a, .el-breadcrumb__item:last-child .el-breadcrumb__inner a:hover, .el-breadcrumb__item:last-child .el-breadcrumb__inner:hover{
@@ -108,7 +107,6 @@
 }
 
 .ele_table .el-table th.is-leaf{
-  font-family:PingFangSC-Medium;
   font-weight:500;
   color:#164276;
   border:none;
