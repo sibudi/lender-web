@@ -44,7 +44,7 @@
           <!-- <div class="df record_operate"> -->
             <!-- <p v-if="scope.row.status ==1" @click="gopay(scope.row.id)">{{scope.row.chargeBuy>0?'Lihat Kode Pembayaran':'Pembayaran'}}</p>
             <p v-if="scope.row.status !=1" style="color:#8F9DAA;">{{scope.row.chargeBuy>0?'Lihat Kode Pembayaran':'Pembayaran'}}</p> -->
-            <p  v-if="scope.row.status ==1|| scope.row.status ==3" @click="goDetail(scope.row)" style="wrap-text:break-word;">Lihat klaim</p>
+            <p  v-if="scope.row.status ==1|| scope.row.status ==3" @click="goDetail(scope.row)" style="wrap-text:break-word;cursor:pointer;">Lihat klaim</p>
             <p  v-if="scope.row.status ==2 || scope.row.status ==9"  style="color:#8F9DAA;wrap-text:break-word;">Validasi klaim</p>
           <!-- </div> -->
         </template>

@@ -390,7 +390,6 @@
 		line-height: 40px;
 		font-size: 35px;
 		color: #1F2532;
-		font-family: PingFangSC;
 		font-weight: Medium;
 	}
 	#companyContentImg {

@@ -131,7 +131,6 @@ dalam memberikan pinjaman produktif demi tercapainya kehidupan masyarakat Indone
 		text-align: center;
 		position: absolute;
 		top: 2.98rem;
-		font-family: PingFangSC-Medium;
 		margin-left: 50%;
 		left: -2rem;
 	}

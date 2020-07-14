@@ -48,23 +48,34 @@ export default new Router({
 			meta: {
 		        auth: true
 		    }	
-		},{
-			name: "购物车",
+		},
+		// {
+		// 	name: "购物车",
+		// 	path: "/cart",
+		// 	component:resolve => require(['../pages/cart/Cart.vue'],resolve),
+		// 	meta: {
+		//         auth: true,
+		//         noFooter:true
+		//     }	
+		// },{
+		// 	name: "支付",
+		// 	path: "/pay",
+		// 	component:resolve => require(['../pages/cart/Pay.vue'],resolve),
+		// 	meta: {
+		//         auth: true,
+		//         noFooter:true
+		//     }	
+		// },
+		{
+			name: "cart",
 			path: "/cart",
-			component:resolve => require(['../pages/cart/Cart.vue'],resolve),
+			component:resolve => require(['../pages/cart/cart.vue'],resolve),
 			meta: {
 		        auth: true,
 		        noFooter:true
 		    }	
-		},{
-			name: "支付",
-			path: "/pay",
-			component:resolve => require(['../pages/cart/Pay.vue'],resolve),
-			meta: {
-		        auth: true,
-		        noFooter:true
-		    }	
-		},{
+		}
+		,{
 	  	name: "查看债权",
 	    path: '/rights',
 	   	component:resolve => require(['../pages/center/CreditorRights.vue'],resolve),

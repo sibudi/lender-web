@@ -250,7 +250,6 @@
 	}
 	.intro_text {
 		width: 486px;
-		font-family:PingFangSC-Medium;
 	}
 	.intro_text p{
 		font-size:24px;
@@ -263,7 +262,6 @@
 			margin-bottom: 20px;
 			color: #8F9DAA;
 			line-height: 30px;
-			font-family:PingFangSC-Regular;
 			font-weight:400;
 		}
 
@@ -325,7 +323,6 @@
 	}	
 	.partner_box_main p{
 		width: 128px;
-		font-family:PingFangSC-Medium;
 		font-weight:500;
 		text-align: center;
 		margin-right: 35px;

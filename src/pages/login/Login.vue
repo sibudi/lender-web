@@ -52,7 +52,7 @@
 					  		<div style="text-align:left;">Saya telah membaca dan menyetujui <router-link to="/guaranteeProtacol">Perjanjian Pinjaman</router-link>.</div>
 					  	</div>
 					    <div class="">
-					    	<button id='signinBtn' @click="loginSubmite()"  :disabled="loading" :loading="loading">Ajukan</button>
+					    	<button id='signinBtn' @click="loginSubmite()"  :disabled="loading" :loading="loading">Login</button>
 					    </div>
 					</div>
 			</div>
@@ -200,7 +200,7 @@
 					  		this.$store.dispatch("setUser",re.data.data.mobileNumber);
 					  		this.$store.dispatch("setToken",re.data.data.sessionId);
 					  		this.$store.dispatch("setLogin",'true');
-					  		this.$message({showClose: true,message: 'login success',type: 'success'});
+					  		this.$message({showClose: true,message: 'Anda Berhasil Login',type: 'success'});
 					  		setTimeout(()=>{
 					  			if(this.$store.getters.loginToBack){
 					  				this.$router.push({path: this.$store.getters.loginToBack})
